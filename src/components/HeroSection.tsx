@@ -1,11 +1,9 @@
 import { motion } from "framer-motion";
-import { ChevronDown, Play } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-[100svh] flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-24 text-center overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_hsl(267_100%_50%_/_0.08),transparent_50%)]" />
-
       {/* Header with centered logo (ajusta tamaños aquí: w-[X] h-[Y]) */}
       <header className="absolute top-0 left-0 right-0 z-10 flex items-center justify-center py-5 sm:py-6">
         <img
@@ -19,11 +17,11 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative max-w-4xl font-display text-3xl sm:text-5xl md:text-7xl font-extrabold uppercase tracking-[0.05em] leading-[1.1] text-balance mt-14 sm:mt-16 mb-6 sm:mb-8 text-white"
+        className="relative max-w-3xl font-display text-2xl sm:text-3xl md:text-5xl font-extrabold uppercase tracking-[0.02em] leading-[1.15] text-balance mt-14 sm:mt-16 mb-6 sm:mb-8 text-foreground"
       >
-        Comienza a{" "}
-        calificar hoy mismo tus leads{" "}
-        aplicando estos 3 simples pasos
+        Escala tu negocio captando{" "}
+        <span className="text-primary">leads más calificados</span>{" "}
+        que paguen más y sin importar la plataforma que uses
       </motion.h1>
 
       <motion.p
@@ -32,7 +30,7 @@ const HeroSection = () => {
         transition={{ delay: 0.2, duration: 0.6 }}
         className="relative max-w-2xl text-sm sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 sm:mb-12"
       >
-        Descubre porque tus leads no llegan calificados y como solucionarlo para siempre
+        Aprende a usar este nuevo metodo que te permitira vender usando cualquier plataforma y deseches las estrategias antiguas que te estan trayendo leads poco calificados
       </motion.p>
 
       <motion.div
@@ -55,16 +53,15 @@ const HeroSection = () => {
       >
         <div
           id="lead-video"
-          className="relative aspect-video w-full bg-muted rounded-2xl sm:rounded-3xl glow-border overflow-hidden group card-glow cursor-pointer"
+          className="relative aspect-video w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_60px_-5px_rgba(111,0,255,0.3)]"
         >
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 sm:gap-4">
-            <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full gradient-cta flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Play fill="currentColor" className="ml-0.5 sm:ml-1 w-6 h-6 sm:w-8 sm:h-8 text-primary-foreground" />
-            </div>
-            <span className="font-display text-[10px] sm:text-xs uppercase tracking-widest text-muted-foreground">
-              Video Coming Soon
-            </span>
-          </div>
+          <iframe
+            src="https://www.youtube.com/embed/OWorFLIbRoo"
+            title="Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
         </div>
       </motion.div>
     </section>

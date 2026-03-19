@@ -1,5 +1,5 @@
 const FooterSection = () => (
-  <footer className="bg-[hsl(0_0%_2%)] py-8 sm:py-12 px-4 sm:px-6 border-t border-foreground/5">
+  <footer className="bg-muted py-8 sm:py-12 px-4 sm:px-6 border-t border-foreground/5">
     <div className="max-w-[800px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 text-muted-foreground text-xs sm:text-sm text-center sm:text-left">
       <div className="flex items-center gap-3">
         <img
@@ -7,7 +7,7 @@ const FooterSection = () => (
           alt="AURA"
           className="w-12 h-12 sm:w-15 sm:h-15"
         />
-        <span>© {new Date().getFullYear()} Agencia Digital. Todos los derechos reservados.</span>
+        <span>© {new Date().getFullYear()} Aura Growth. Todos los derechos reservados.</span>
       </div>
       <a
         href="#"

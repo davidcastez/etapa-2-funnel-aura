@@ -4,23 +4,23 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
 
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 100%;
+    --card: 260 20% 97%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
     --primary: 267 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 260 20% 8%;
-    --secondary-foreground: 0 0% 63%;
+    --secondary: 260 20% 95%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 63%;
+    --muted: 260 10% 95%;
+    --muted-foreground: 0 0% 40%;
 
     --accent: 267 100% 50%;
     --accent-foreground: 0 0% 100%;
@@ -29,21 +29,21 @@
     --destructive-foreground: 0 0% 100%;
 
     --border: 267 100% 50% / 0.1;
-    --input: 0 0% 10%;
+    --input: 260 10% 93%;
     --ring: 267 100% 50%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --surface-elevated: 0 0% 6%;
-    --text-secondary: 0 0% 63%;
+    --surface-elevated: 260 15% 96%;
+    --text-secondary: 0 0% 40%;
     --gradient-primary: linear-gradient(135deg, hsl(267 100% 50%), hsl(267 80% 62%));
     --gradient-cta: linear-gradient(90deg, #6F00FF, #9B40FF, #B24BF3);
-    --gradient-text-highlight: linear-gradient(90deg, #FFFFFF, #B39DDB);
-    --shadow-glow: 0 0 50px -12px rgba(111, 0, 255, 0.25);
-    --shadow-card: 0 0 0 1px rgba(111, 0, 255, 0.05), 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    --gradient-text-highlight: linear-gradient(90deg, hsl(267 100% 30%), hsl(267 60% 50%));
+    --shadow-glow: 0 0 50px -12px rgba(111, 0, 255, 0.15);
+    --shadow-card: 0 0 0 1px rgba(111, 0, 255, 0.08), 0 20px 40px -10px rgba(0, 0, 0, 0.08);
 
-    --sidebar-background: 0 0% 4%;
+    --sidebar-background: 0 0% 7%;
     --sidebar-foreground: 0 0% 63%;
     --sidebar-primary: 267 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -61,6 +61,11 @@
 
   html {
     overflow-x: hidden;
+  }
+
+  html, body, #root {
+    min-height: 100%;
+    height: 100%;
   }
 
   body {

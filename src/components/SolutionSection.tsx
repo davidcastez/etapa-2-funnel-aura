@@ -54,7 +54,7 @@ const SolutionSection = () => (
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="space-y-4 sm:space-y-6 p-6 sm:p-8 rounded-3xl sm:rounded-4xl bg-gradient-to-br from-[hsl(267_40%_10%)] to-background glow-border card-glow"
+          className="space-y-4 sm:space-y-6 p-6 sm:p-8 rounded-3xl sm:rounded-4xl bg-gradient-to-br from-[hsl(267_60%_96%)] to-background glow-border card-glow"
         >
           <h4 className="font-display text-xs sm:text-sm uppercase tracking-widest text-primary">
             Lo que realmente funciona
