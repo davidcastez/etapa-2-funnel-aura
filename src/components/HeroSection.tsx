@@ -6,9 +6,11 @@ const FORM_DELAY_SECONDS = 60;
 
 const HeroSection = () => {
   const [showForm, setShowForm] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
   const allowedTimeRef = useRef(0);
+  const checkIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Form delay timer
   useEffect(() => {
@@ -30,7 +32,7 @@ const HeroSection = () => {
     document.body.appendChild(script);
   }, [showForm]);
 
-  // YouTube IFrame API - prevent seeking
+  // YouTube IFrame API - prevent seeking forward
   useEffect(() => {
     if (!(window as any).YT) {
       const tag = document.createElement("script");
@@ -38,26 +40,28 @@ const HeroSection = () => {
       document.head.appendChild(tag);
     }
 
-    (window as any).onYouTubeIframeAPIReady = () => {
+    const initPlayer = () => {
       playerRef.current = new (window as any).YT.Player("yt-player-etapa2", {
         events: {
           onStateChange: (event: any) => {
             if (event.data === 1) {
-              const interval = setInterval(() => {
-                if (playerRef.current && playerRef.current.getCurrentTime) {
-                  const current = playerRef.current.getCurrentTime();
-                  if (current > allowedTimeRef.current) {
-                    allowedTimeRef.current = current;
-                  }
-                  if (current > allowedTimeRef.current + 2) {
-                    playerRef.current.seekTo(allowedTimeRef.current, true);
-                  }
+              // Playing
+              setIsPlaying(true);
+              if (checkIntervalRef.current) clearInterval(checkIntervalRef.current);
+              checkIntervalRef.current = setInterval(() => {
+                if (!playerRef.current?.getCurrentTime) return;
+                const current = playerRef.current.getCurrentTime();
+                if (current <= allowedTimeRef.current + 2) {
+                  allowedTimeRef.current = Math.max(allowedTimeRef.current, current);
+                } else {
+                  playerRef.current.seekTo(allowedTimeRef.current, true);
                 }
-              }, 1000);
-              (playerRef.current as any)._seekInterval = interval;
+              }, 500);
             } else {
-              if ((playerRef.current as any)?._seekInterval) {
-                clearInterval((playerRef.current as any)._seekInterval);
+              setIsPlaying(false);
+              if (checkIntervalRef.current) {
+                clearInterval(checkIntervalRef.current);
+                checkIntervalRef.current = null;
               }
             }
           },
@@ -65,10 +69,26 @@ const HeroSection = () => {
       });
     };
 
-    if ((window as any).YT && (window as any).YT.Player) {
-      (window as any).onYouTubeIframeAPIReady();
+    if ((window as any).YT?.Player) {
+      initPlayer();
+    } else {
+      (window as any).onYouTubeIframeAPIReady = initPlayer;
     }
+
+    return () => {
+      if (checkIntervalRef.current) clearInterval(checkIntervalRef.current);
+    };
   }, []);
+
+  // Toggle play/pause via API
+  const handleVideoClick = () => {
+    if (!playerRef.current) return;
+    if (isPlaying) {
+      playerRef.current.pauseVideo();
+    } else {
+      playerRef.current.playVideo();
+    }
+  };
 
   return (
     <section className="relative min-h-[100svh] flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-24 text-center overflow-hidden">
@@ -125,11 +145,16 @@ const HeroSection = () => {
         >
           <iframe
             id="yt-player-etapa2"
-            src="https://www.youtube.com/embed/OWorFLIbRoo?enablejsapi=1&rel=0&modestbranding=1&disablekb=1"
+            src="https://www.youtube.com/embed/OWorFLIbRoo?enablejsapi=1&rel=0&modestbranding=1&disablekb=1&fs=0"
             title="Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
             className="absolute inset-0 w-full h-full"
+          />
+          {/* Transparent overlay - blocks seek bar clicks, allows play/pause via our handler */}
+          <div
+            onClick={handleVideoClick}
+            className="absolute inset-0 z-10 cursor-pointer"
+            style={{ background: "transparent" }}
           />
         </div>
       </motion.div>
