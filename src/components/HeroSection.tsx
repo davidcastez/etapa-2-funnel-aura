@@ -160,7 +160,7 @@ const HeroSection = () => {
       </motion.div>
 
       {/* GHL Survey with 60s delay */}
-      <div ref={formRef} className="w-full max-w-[800px] mt-8 sm:mt-12">
+      <div ref={formRef} className="relative z-20 w-full max-w-[800px] mt-8 sm:mt-12">
         <AnimatePresence>
           {showForm && (
             <motion.div
@@ -171,7 +171,7 @@ const HeroSection = () => {
             >
               <iframe
                 src="https://api.leadconnectorhq.com/widget/survey/ONISXPtG8sQ4jDL2wWJ4"
-                style={{ border: "none", width: "100%", minHeight: "600px" }}
+                style={{ border: "none", width: "100%", minHeight: "600px", position: "relative", zIndex: 30 }}
                 scrolling="no"
                 id="ONISXPtG8sQ4jDL2wWJ4"
                 title="survey"
