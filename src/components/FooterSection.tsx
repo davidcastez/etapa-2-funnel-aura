@@ -5,7 +5,7 @@ const FooterSection = () => (
         <img
           src="/aura-logo.png"
           alt="AURA"
-          className="w-12 h-12 sm:w-15 sm:h-15"
+          className="w-8 h-8 sm:w-10 sm:h-10"
         />
         <span>© {new Date().getFullYear()} Aura Growth. Todos los derechos reservados.</span>
       </div>

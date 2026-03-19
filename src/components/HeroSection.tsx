@@ -9,7 +9,7 @@ const HeroSection = () => {
         <img
           src="/aura-logo.png"
           alt="AURA"
-          className="w-30 h-30 sm:w-20 sm:h-20"
+          className="w-10 h-10 sm:w-14 sm:h-14"
         />
       </header>
 

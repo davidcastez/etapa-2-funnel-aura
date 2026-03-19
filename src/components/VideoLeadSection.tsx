@@ -64,7 +64,7 @@ const VideoLeadSection = () => {
               >
                 <iframe
                   src="https://api.leadconnectorhq.com/widget/survey/ONISXPtG8sQ4jDL2wWJ4"
-                  style={{ border: "none", width: "100%" }}
+                  style={{ border: "none", width: "100%", minHeight: "600px" }}
                   scrolling="no"
                   id="ONISXPtG8sQ4jDL2wWJ4"
                   title="survey"
